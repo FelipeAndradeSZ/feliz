@@ -138,7 +138,7 @@ const LilyTribute = ({ delay }) => (
     </motion.div>
 );
 
-// Animated bouquet component - flores se formando uma a uma
+// Buquê animado com emojis - elegante e simples
 const AnimatedBouquet = ({ delay }) => {
     const [isVisible, setIsVisible] = useState(false);
 
@@ -147,241 +147,142 @@ const AnimatedBouquet = ({ delay }) => {
         return () => clearTimeout(timer);
     }, [delay]);
 
-    // Flores do buquê - rosas e girassóis
+    // Configuração das flores - formato de buquê
     const flowers = [
-        { type: 'rose', color: '#DC2626', x: 0, y: -60, delay: 0.2, size: 50 },
-        { type: 'sunflower', color: '#FBBF24', x: -45, y: -35, delay: 0.5, size: 45 },
-        { type: 'rose', color: '#BE185D', x: 45, y: -35, delay: 0.8, size: 45 },
-        { type: 'sunflower', color: '#F59E0B', x: -30, y: -70, delay: 1.1, size: 40 },
-        { type: 'rose', color: '#E11D48', x: 30, y: -70, delay: 1.4, size: 40 },
-        { type: 'sunflower', color: '#FCD34D', x: 0, y: -90, delay: 1.7, size: 35 },
+        // Camada do topo
+        { emoji: '🌹', x: 0, y: 0, delay: 0.3, size: 48, rotate: 0 },
+        // Segunda camada
+        { emoji: '🌻', x: -40, y: 35, delay: 0.5, size: 44, rotate: -15 },
+        { emoji: '🌻', x: 40, y: 35, delay: 0.6, size: 44, rotate: 15 },
+        // Terceira camada
+        { emoji: '🌹', x: -25, y: 20, delay: 0.8, size: 42, rotate: -10 },
+        { emoji: '🌹', x: 25, y: 20, delay: 0.9, size: 42, rotate: 10 },
+        // Camada lateral
+        { emoji: '🌻', x: -55, y: 60, delay: 1.1, size: 40, rotate: -25 },
+        { emoji: '🌻', x: 55, y: 60, delay: 1.2, size: 40, rotate: 25 },
+        // Rosa central
+        { emoji: '🌹', x: 0, y: 45, delay: 1.4, size: 46, rotate: 0 },
     ];
 
-    // Componente de Rosa
-    const Rose = ({ color, size, flowerDelay }) => (
-        <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={isVisible ? { scale: 1, rotate: 0 } : {}}
-            transition={{ duration: 0.8, delay: flowerDelay, type: "spring", bounce: 0.4 }}
-            className="absolute"
-            style={{ width: size, height: size }}
-        >
-            {/* Pétalas da rosa */}
-            {[...Array(8)].map((_, i) => (
-                <motion.div
-                    key={i}
-                    initial={{ scale: 0 }}
-                    animate={isVisible ? { scale: 1 } : {}}
-                    transition={{ duration: 0.3, delay: flowerDelay + 0.1 * i }}
-                    className="absolute rounded-full"
-                    style={{
-                        width: size * 0.5,
-                        height: size * 0.6,
-                        backgroundColor: color,
-                        left: '50%',
-                        top: '50%',
-                        transform: `translate(-50%, -50%) rotate(${i * 45}deg) translateY(-${size * 0.15}px)`,
-                        borderRadius: '50% 50% 50% 50%',
-                        boxShadow: `inset -2px -2px 4px rgba(0,0,0,0.2), inset 2px 2px 4px rgba(255,255,255,0.3)`,
-                    }}
-                />
-            ))}
-            {/* Centro da rosa */}
-            <motion.div
-                initial={{ scale: 0 }}
-                animate={isVisible ? { scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: flowerDelay + 0.5 }}
-                className="absolute rounded-full"
-                style={{
-                    width: size * 0.35,
-                    height: size * 0.35,
-                    background: `radial-gradient(circle, ${color} 0%, #831843 100%)`,
-                    left: '50%',
-                    top: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    boxShadow: 'inset 0 0 8px rgba(0,0,0,0.3)',
-                }}
-            />
-        </motion.div>
-    );
-
-    // Componente de Girassol
-    const Sunflower = ({ color, size, flowerDelay }) => (
-        <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={isVisible ? { scale: 1, rotate: 0 } : {}}
-            transition={{ duration: 0.8, delay: flowerDelay, type: "spring", bounce: 0.4 }}
-            className="absolute"
-            style={{ width: size, height: size }}
-        >
-            {/* Pétalas do girassol */}
-            {[...Array(12)].map((_, i) => (
-                <motion.div
-                    key={i}
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={isVisible ? { scale: 1, opacity: 1 } : {}}
-                    transition={{ duration: 0.3, delay: flowerDelay + 0.05 * i }}
-                    className="absolute"
-                    style={{
-                        width: size * 0.25,
-                        height: size * 0.5,
-                        backgroundColor: color,
-                        left: '50%',
-                        top: '50%',
-                        transform: `translate(-50%, -50%) rotate(${i * 30}deg) translateY(-${size * 0.25}px)`,
-                        borderRadius: '50% 50% 30% 30%',
-                        boxShadow: 'inset -1px -1px 3px rgba(0,0,0,0.2)',
-                    }}
-                />
-            ))}
-            {/* Centro do girassol (sementes) */}
-            <motion.div
-                initial={{ scale: 0 }}
-                animate={isVisible ? { scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: flowerDelay + 0.6 }}
-                className="absolute rounded-full"
-                style={{
-                    width: size * 0.45,
-                    height: size * 0.45,
-                    background: 'radial-gradient(circle, #92400E 0%, #451A03 100%)',
-                    left: '50%',
-                    top: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    boxShadow: 'inset 0 0 10px rgba(0,0,0,0.5)',
-                }}
-            />
-        </motion.div>
-    );
+    // Folhas decorativas
+    const leaves = [
+        { x: -65, y: 90, rotate: -40, delay: 1.6 },
+        { x: 65, y: 90, rotate: 40, delay: 1.7 },
+        { x: -45, y: 110, rotate: -25, delay: 1.8 },
+        { x: 45, y: 110, rotate: 25, delay: 1.9 },
+    ];
 
     return (
-        <div className="relative flex flex-col items-center py-8">
+        <div className="relative flex flex-col items-center py-12">
             {/* Glow de fundo */}
             <motion.div
                 initial={{ opacity: 0, scale: 0.5 }}
-                animate={isVisible ? { opacity: 0.4, scale: 1 } : {}}
-                transition={{ duration: 1.5, delay: 0 }}
-                className="absolute w-80 h-80 bg-gradient-to-br from-violet-300 via-pink-200 to-yellow-200 rounded-full blur-3xl"
+                animate={isVisible ? { opacity: 0.5, scale: 1 } : {}}
+                transition={{ duration: 1.5 }}
+                className="absolute w-72 h-72 bg-gradient-to-br from-violet-300 via-pink-200 to-yellow-200 rounded-full blur-3xl"
+                style={{ top: '10%' }}
             />
 
             {/* Container do buquê */}
-            <div className="relative w-64 h-80 md:w-80 md:h-96">
-                {/* Caules */}
-                <motion.div
-                    initial={{ scaleY: 0 }}
-                    animate={isVisible ? { scaleY: 1 } : {}}
-                    transition={{ duration: 0.8, delay: 0.1 }}
-                    className="absolute bottom-0 left-1/2 -translate-x-1/2 origin-bottom"
-                >
-                    {[...Array(5)].map((_, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ scaleY: 0 }}
-                            animate={isVisible ? { scaleY: 1 } : {}}
-                            transition={{ duration: 0.5, delay: 0.1 + i * 0.15 }}
-                            className="absolute bottom-0 w-1.5 bg-gradient-to-t from-green-700 to-green-500 rounded-full origin-bottom"
-                            style={{
-                                height: 120 + i * 10,
-                                left: `${50 + (i - 2) * 8}%`,
-                                transform: `translateX(-50%) rotate(${(i - 2) * 8}deg)`,
-                            }}
-                        />
-                    ))}
-                </motion.div>
+            <div className="relative w-72 h-80 md:w-80 md:h-96">
 
-                {/* Laço violeta */}
+                {/* Papel de embrulho / Base do buquê */}
                 <motion.div
-                    initial={{ scale: 0, rotate: -45 }}
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={isVisible ? { scale: 1, opacity: 1 } : {}}
+                    transition={{ duration: 0.8, delay: 2.2, type: "spring" }}
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2"
+                    style={{
+                        width: 0,
+                        height: 0,
+                        borderLeft: '60px solid transparent',
+                        borderRight: '60px solid transparent',
+                        borderTop: '100px solid #8B5CF6',
+                        filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.1))',
+                    }}
+                />
+
+                {/* Laço violeta no papel */}
+                <motion.div
+                    initial={{ scale: 0, rotate: -180 }}
                     animate={isVisible ? { scale: 1, rotate: 0 } : {}}
-                    transition={{ duration: 0.6, delay: 2, type: "spring" }}
-                    className="absolute bottom-16 left-1/2 -translate-x-1/2"
+                    transition={{ duration: 0.6, delay: 2.4, type: "spring", bounce: 0.5 }}
+                    className="absolute bottom-20 left-1/2 -translate-x-1/2 text-5xl z-10"
                 >
-                    <div className="relative">
-                        {/* Laço esquerdo */}
-                        <div className="absolute -left-6 -top-2 w-8 h-5 bg-violet-500 rounded-full transform -rotate-30"
-                            style={{ borderRadius: '60% 40% 60% 40%' }} />
-                        {/* Laço direito */}
-                        <div className="absolute -right-6 -top-2 w-8 h-5 bg-violet-500 rounded-full transform rotate-30"
-                            style={{ borderRadius: '40% 60% 40% 60%' }} />
-                        {/* Centro do laço */}
-                        <div className="w-4 h-4 bg-violet-600 rounded-full shadow-lg" />
-                        {/* Fitas pendentes */}
-                        <div className="absolute top-3 left-1/2 -translate-x-1/2 w-3 h-12 bg-gradient-to-b from-violet-500 to-violet-400 rounded-b-full"
-                            style={{ transform: 'translateX(-50%) rotate(-5deg)' }} />
-                        <div className="absolute top-3 left-1/2 -translate-x-1/2 w-3 h-10 bg-gradient-to-b from-violet-500 to-violet-400 rounded-b-full"
-                            style={{ transform: 'translateX(-30%) rotate(8deg)' }} />
-                    </div>
+                    🎀
                 </motion.div>
 
-                {/* Folhas decorativas */}
-                {[
-                    { x: -50, y: 60, rotate: -30 },
-                    { x: 50, y: 60, rotate: 30 },
-                    { x: -40, y: 40, rotate: -45 },
-                    { x: 40, y: 40, rotate: 45 },
-                ].map((leaf, i) => (
+                {/* Folhas verdes */}
+                {leaves.map((leaf, i) => (
                     <motion.div
-                        key={i}
-                        initial={{ scale: 0, opacity: 0 }}
-                        animate={isVisible ? { scale: 1, opacity: 1 } : {}}
-                        transition={{ duration: 0.4, delay: 1.8 + i * 0.1 }}
-                        className="absolute bg-green-500 rounded-full"
+                        key={`leaf-${i}`}
+                        initial={{ scale: 0, opacity: 0, rotate: leaf.rotate - 30 }}
+                        animate={isVisible ? { scale: 1, opacity: 1, rotate: leaf.rotate } : {}}
+                        transition={{ duration: 0.5, delay: leaf.delay, type: "spring" }}
+                        className="absolute text-3xl"
                         style={{
-                            width: 25,
-                            height: 40,
                             left: `calc(50% + ${leaf.x}px)`,
-                            bottom: `calc(${leaf.y}px)`,
-                            transform: `rotate(${leaf.rotate}deg)`,
-                            borderRadius: '50% 50% 50% 50% / 60% 60% 40% 40%',
-                            boxShadow: 'inset -2px -2px 4px rgba(0,0,0,0.2)',
+                            top: `calc(30% + ${leaf.y}px)`,
+                            transform: `translate(-50%, -50%) rotate(${leaf.rotate}deg)`,
                         }}
-                    />
+                    >
+                        🌿
+                    </motion.div>
                 ))}
 
-                {/* Flores */}
-                <div className="absolute bottom-32 left-1/2 -translate-x-1/2">
-                    {flowers.map((flower, i) => (
-                        <div
-                            key={i}
-                            className="absolute"
-                            style={{
-                                left: flower.x,
-                                top: flower.y,
-                                transform: 'translate(-50%, -50%)',
-                            }}
-                        >
-                            {flower.type === 'rose' ? (
-                                <Rose color={flower.color} size={flower.size} flowerDelay={flower.delay} />
-                            ) : (
-                                <Sunflower color={flower.color} size={flower.size} flowerDelay={flower.delay} />
-                            )}
-                        </div>
-                    ))}
-                </div>
-
-                {/* Sparkles animados */}
-                {isVisible && [...Array(12)].map((_, i) => (
+                {/* Flores - aparecem uma a uma */}
+                {flowers.map((flower, i) => (
                     <motion.div
                         key={i}
-                        className="absolute text-xl md:text-2xl pointer-events-none"
+                        initial={{ scale: 0, opacity: 0, rotate: -180, y: 50 }}
+                        animate={isVisible ? {
+                            scale: 1,
+                            opacity: 1,
+                            rotate: flower.rotate,
+                            y: 0
+                        } : {}}
+                        transition={{
+                            duration: 0.7,
+                            delay: flower.delay,
+                            type: "spring",
+                            bounce: 0.4
+                        }}
+                        className="absolute"
+                        style={{
+                            left: `calc(50% + ${flower.x}px)`,
+                            top: `calc(25% + ${flower.y}px)`,
+                            fontSize: flower.size,
+                            transform: `translate(-50%, -50%)`,
+                            filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.15))',
+                        }}
+                    >
+                        {flower.emoji}
+                    </motion.div>
+                ))}
+
+                {/* Sparkles ao redor */}
+                {isVisible && [...Array(8)].map((_, i) => (
+                    <motion.div
+                        key={`sparkle-${i}`}
+                        className="absolute pointer-events-none"
                         initial={{ opacity: 0, scale: 0 }}
                         animate={{
                             opacity: [0, 1, 0],
                             scale: [0.5, 1.2, 0.5],
-                            x: [0, (Math.random() - 0.5) * 100],
-                            y: [0, -50 - Math.random() * 80],
                         }}
                         transition={{
-                            duration: 2 + Math.random(),
-                            delay: 2.5 + i * 0.2,
+                            duration: 1.5,
+                            delay: 2.8 + i * 0.15,
                             repeat: Infinity,
-                            repeatDelay: Math.random() * 3,
+                            repeatDelay: 2 + Math.random() * 2,
                         }}
                         style={{
-                            left: `${30 + Math.random() * 40}%`,
-                            bottom: `${30 + Math.random() * 30}%`,
+                            left: `${20 + (i % 4) * 20}%`,
+                            top: `${15 + Math.floor(i / 4) * 25}%`,
+                            fontSize: 20 + Math.random() * 10,
                         }}
                     >
-                        {['✨', '💜', '🌟', '💫'][i % 4]}
+                        {['✨', '💜', '⭐', '💫'][i % 4]}
                     </motion.div>
                 ))}
             </div>
@@ -390,8 +291,8 @@ const AnimatedBouquet = ({ delay }) => {
             <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={isVisible ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 2.5 }}
-                className="mt-4 text-center text-violet-600 font-medium text-lg"
+                transition={{ delay: 2.8, duration: 0.6 }}
+                className="mt-2 text-center text-violet-600 font-semibold text-xl"
             >
                 Para você, com carinho 💜
             </motion.p>
