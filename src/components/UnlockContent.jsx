@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Star, Sparkles, Sun, Moon, Sunrise, Dog, Crown, Flame } from 'lucide-react';
+import { Heart, Star, Sparkles, Dog, Crown, Flower2 } from 'lucide-react';
 
-// Floating particles component
+// Floating particles - violeta, rosas e girassóis
 const FloatingParticles = () => {
-    const particles = Array.from({ length: 25 }, (_, i) => ({
+    const particles = Array.from({ length: 20 }, (_, i) => ({
         id: i,
-        emoji: ['💖', '✨', '🌸', '💫', '🦋', '🌷', '💕', '⭐', '🐾', '☀️'][i % 10],
+        emoji: ['🌹', '✨', '🌻', '💜', '🦋', '🌷', '💕', '⭐', '🐾', '🌸'][i % 10],
         x: Math.random() * 100,
         delay: Math.random() * 5,
-        duration: 10 + Math.random() * 8,
-        size: 14 + Math.random() * 14,
+        duration: 12 + Math.random() * 8,
+        size: 14 + Math.random() * 12,
     }));
 
     return (
@@ -27,7 +27,7 @@ const FloatingParticles = () => {
                     }}
                     animate={{
                         y: '-10vh',
-                        opacity: [0, 0.8, 0.8, 0],
+                        opacity: [0, 0.7, 0.7, 0],
                         rotate: 20
                     }}
                     transition={{
@@ -45,19 +45,19 @@ const FloatingParticles = () => {
     );
 };
 
-// Personalized quotes for Bea
+// Quotes focados na Bea - amizade, não romance
 const quotes = [
-    { text: "Você é o Sol que ilumina os dias de todos ao seu redor, Bea. Mesmo quando não percebe.", emoji: "☀️" },
-    { text: "Sua dedicação e esforço são inspiradores. Tenho muito orgulho de você.", emoji: "💪" },
-    { text: "Nos dias difíceis, lembre-se: a Lily te ama incondicionalmente, e eu também.", emoji: "🐕" },
-    { text: "Você merece todo o amor do mundo. Nunca duvide disso.", emoji: "💖" },
-    { text: "Sua força vem de dentro, mas quando precisar, estarei aqui.", emoji: "🤝" },
-    { text: "Beatriz significa 'aquela que traz felicidade'. Você faz jus ao nome.", emoji: "✨" },
-    { text: "Cada desafio que você enfrenta só prova o quanto você é incrível.", emoji: "🌟" },
-    { text: "Você não é só esforçada. Você é extraordinária.", emoji: "👑" },
+    { text: "Você é incrível, Bea. Nunca duvide do seu valor.", emoji: "💜" },
+    { text: "Sua dedicação e esforço inspiram todos ao seu redor.", emoji: "✨" },
+    { text: "A Lily tem muita sorte de ter uma dona tão especial.", emoji: "🐕" },
+    { text: "Você merece todo o carinho e paz do mundo.", emoji: "💕" },
+    { text: "Sua força vem de dentro, e ela é gigante.", emoji: "💪" },
+    { text: "Beatriz significa 'aquela que traz felicidade'. Você faz jus ao nome.", emoji: "🌻" },
+    { text: "Cada desafio que você enfrenta só prova o quanto você é forte.", emoji: "🌟" },
+    { text: "Você é extraordinária em tudo o que faz.", emoji: "👑" },
 ];
 
-// Message cards with special messages
+// Message cards - tema amizade
 const MessageCard = ({ title, message, icon: Icon, delay, gradient }) => (
     <motion.div
         initial={{ opacity: 0, y: 50, scale: 0.9 }}
@@ -81,13 +81,13 @@ const MessageCard = ({ title, message, icon: Icon, delay, gradient }) => (
     </motion.div>
 );
 
-// Lily section - special tribute
+// Lily section - com foto real
 const LilyTribute = ({ delay }) => (
     <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay }}
-        className="relative bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-6 md:p-8 shadow-xl border-2 border-amber-200/50 overflow-hidden"
+        className="relative bg-gradient-to-br from-violet-50 to-purple-50 rounded-3xl p-6 md:p-8 shadow-xl border-2 border-violet-200/50 overflow-hidden"
     >
         {/* Paw prints decoration */}
         <div className="absolute top-2 right-2 text-2xl opacity-20">🐾</div>
@@ -96,9 +96,9 @@ const LilyTribute = ({ delay }) => (
         <div className="flex flex-col md:flex-row items-center gap-6">
             <motion.div
                 className="relative"
-                whileHover={{ scale: 1.05, rotate: 5 }}
+                whileHover={{ scale: 1.05 }}
             >
-                <div className="absolute inset-0 bg-gradient-to-br from-pink-300 to-orange-300 rounded-full blur-xl opacity-40" />
+                <div className="absolute inset-0 bg-gradient-to-br from-violet-300 to-purple-300 rounded-full blur-xl opacity-40" />
                 <img
                     src="/feliz/lily.png"
                     alt="Lily"
@@ -109,25 +109,25 @@ const LilyTribute = ({ delay }) => (
                     animate={{ scale: [1, 1.1, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
                 >
-                    <span className="text-2xl">💕</span>
+                    <span className="text-2xl">💜</span>
                 </motion.div>
             </motion.div>
 
             <div className="text-center md:text-left flex-1">
                 <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
-                    <Dog className="w-6 h-6 text-amber-600" />
-                    <h3 className="text-2xl font-bold text-amber-800">Lily</h3>
+                    <Dog className="w-6 h-6 text-violet-600" />
+                    <h3 className="text-2xl font-bold text-violet-800">Lily</h3>
                 </div>
-                <p className="text-amber-700 leading-relaxed mb-4">
+                <p className="text-violet-700 leading-relaxed mb-4">
                     Sua companheira de todas as horas. Ela sabe quando você precisa de um
                     abraço peludo e está sempre lá, com o rabinho abanando, pronta pra te
-                    fazer sorrir. O amor dela por você é infinito. 🧡
+                    fazer sorrir. O amor dela por você é infinito. 💜
                 </p>
                 <div className="flex flex-wrap justify-center md:justify-start gap-2">
                     {['Fiel', 'Carinhosa', 'Protetora', 'Sua melhor amiga'].map((trait, i) => (
                         <span
                             key={i}
-                            className="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-medium"
+                            className="px-3 py-1 bg-violet-100 text-violet-700 rounded-full text-sm font-medium"
                         >
                             {trait}
                         </span>
@@ -138,51 +138,82 @@ const LilyTribute = ({ delay }) => (
     </motion.div>
 );
 
-// Affirmations section
-const Affirmations = ({ delay }) => {
-    const affirmations = [
-        "Eu sou forte",
-        "Eu sou capaz",
-        "Eu mereço amor",
-        "Eu sou suficiente",
-        "Eu sou corajosa",
-        "Eu estou crescendo",
-    ];
-
+// Animated bouquet component - rosas e girassóis
+const AnimatedBouquet = ({ delay }) => {
     return (
         <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay }}
-            className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-3xl p-6 md:p-8 shadow-xl"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay, type: "spring" }}
+            className="relative flex flex-col items-center"
         >
-            <div className="flex items-center justify-center gap-2 mb-6">
-                <Sparkles className="w-6 h-6 text-purple-500" />
-                <h3 className="text-xl md:text-2xl font-bold text-purple-800">Afirmações pra Você, Sol ☀️</h3>
-            </div>
-            <p className="text-center text-purple-600 mb-6 text-sm md:text-base">
-                Repita pra você mesma. Você merece acreditar nisso.
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {affirmations.map((text, i) => (
-                    <motion.div
-                        key={i}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="bg-white/80 backdrop-blur-sm p-4 rounded-2xl text-center shadow-md hover:shadow-lg transition-shadow cursor-pointer border border-purple-200/50"
-                    >
-                        <p className="text-purple-700 font-semibold text-sm md:text-base">{text}</p>
-                    </motion.div>
-                ))}
-            </div>
+            <motion.div
+                animate={{
+                    y: [0, -10, 0],
+                    rotate: [0, 2, -2, 0]
+                }}
+                transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                }}
+                className="relative"
+            >
+                <div className="absolute inset-0 bg-gradient-to-br from-violet-300 to-pink-300 rounded-full blur-3xl opacity-30 scale-150" />
+                <img
+                    src="/feliz/bouquet.png"
+                    alt="Buquê de rosas e girassóis"
+                    className="relative w-64 h-64 md:w-80 md:h-80 object-contain drop-shadow-2xl"
+                />
+            </motion.div>
+
+            {/* Floating petals around bouquet */}
+            {[...Array(8)].map((_, i) => (
+                <motion.div
+                    key={i}
+                    className="absolute text-2xl"
+                    initial={{
+                        x: 0,
+                        y: 0,
+                        opacity: 0
+                    }}
+                    animate={{
+                        x: [0, (Math.random() - 0.5) * 150],
+                        y: [0, -100 - Math.random() * 50],
+                        opacity: [0, 1, 0],
+                        rotate: [0, 360]
+                    }}
+                    transition={{
+                        duration: 3 + Math.random() * 2,
+                        delay: delay + i * 0.3,
+                        repeat: Infinity,
+                        repeatDelay: Math.random() * 2
+                    }}
+                    style={{
+                        left: '50%',
+                        top: '50%',
+                    }}
+                >
+                    {['🌹', '🌻', '💜', '✨'][i % 4]}
+                </motion.div>
+            ))}
+
+            <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: delay + 0.5 }}
+                className="mt-4 text-center text-violet-600 font-medium text-lg"
+            >
+                Para você, com carinho 💜
+            </motion.p>
         </motion.div>
     );
 };
 
-// Glowing orb decoration
+// Glowing orb decoration - violeta theme
 const GlowingOrb = ({ color, size, top, left, delay }) => (
     <motion.div
-        className="absolute rounded-full blur-3xl opacity-30 pointer-events-none"
+        className="absolute rounded-full blur-3xl opacity-25 pointer-events-none"
         style={{
             background: color,
             width: size,
@@ -192,7 +223,7 @@ const GlowingOrb = ({ color, size, top, left, delay }) => (
         }}
         animate={{
             scale: [1, 1.2, 1],
-            opacity: [0.2, 0.35, 0.2],
+            opacity: [0.15, 0.3, 0.15],
         }}
         transition={{
             duration: 5,
@@ -222,12 +253,12 @@ const UnlockContent = () => {
     }, []);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-rose-100 via-pink-50 to-purple-100 relative overflow-hidden">
-            {/* Background decorations */}
-            <GlowingOrb color="#FFB6C1" size="300px" top="-80px" left="-80px" delay={0} />
-            <GlowingOrb color="#DDA0DD" size="250px" top="40%" left="85%" delay={1} />
-            <GlowingOrb color="#FFDAB9" size="280px" top="75%" left="-40px" delay={2} />
-            <GlowingOrb color="#FFE4B5" size="200px" top="20%" left="60%" delay={1.5} />
+        <div className="min-h-screen bg-gradient-to-br from-violet-100 via-purple-50 to-pink-50 relative overflow-hidden">
+            {/* Background decorations - violeta theme */}
+            <GlowingOrb color="#8B5CF6" size="300px" top="-80px" left="-80px" delay={0} />
+            <GlowingOrb color="#A78BFA" size="250px" top="40%" left="85%" delay={1} />
+            <GlowingOrb color="#C4B5FD" size="280px" top="75%" left="-40px" delay={2} />
+            <GlowingOrb color="#DDD6FE" size="200px" top="20%" left="60%" delay={1.5} />
 
             {/* Floating particles */}
             <FloatingParticles />
@@ -239,7 +270,7 @@ const UnlockContent = () => {
                         initial={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-pink-200 via-rose-200 to-orange-100"
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-violet-200 via-purple-100 to-pink-100"
                     >
                         <motion.div
                             initial={{ scale: 0, rotate: -180 }}
@@ -252,15 +283,15 @@ const UnlockContent = () => {
                                 animate={{ rotate: [0, 10, -10, 0] }}
                                 transition={{ duration: 0.5, delay: 0.6 }}
                             >
-                                ☀️
+                                💜
                             </motion.div>
                             <motion.h1
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4 }}
-                                className="text-3xl md:text-4xl font-bold text-rose-600"
+                                className="text-3xl md:text-4xl font-bold text-violet-600"
                             >
-                                Oi, Bea! 💖
+                                Oi, Bea! 🌻
                             </motion.h1>
                         </motion.div>
                     </motion.div>
@@ -286,11 +317,11 @@ const UnlockContent = () => {
                     >
                         <span className="text-5xl md:text-6xl">🌻</span>
                     </motion.div>
-                    <h1 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-pink-500 via-rose-500 to-orange-400 bg-clip-text text-transparent mt-4 mb-3">
+                    <h1 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-violet-600 via-purple-500 to-pink-500 bg-clip-text text-transparent mt-4 mb-3">
                         Para Você, Beatriz
                     </h1>
-                    <p className="text-base md:text-lg text-cute-text/70 px-4">
-                        Um cantinho especial feito com muito carinho 💕
+                    <p className="text-base md:text-lg text-violet-600/70 px-4">
+                        Um cantinho especial só seu 💜
                     </p>
                 </motion.header>
 
@@ -301,14 +332,14 @@ const UnlockContent = () => {
                     transition={{ duration: 0.8, delay: 0.5 }}
                     className="mb-8 md:mb-12"
                 >
-                    <div className="relative bg-white/70 backdrop-blur-md rounded-3xl p-6 md:p-8 shadow-xl border border-white/50 overflow-hidden">
-                        <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-pink-400 via-rose-400 to-orange-400" />
+                    <div className="relative bg-white/70 backdrop-blur-md rounded-3xl p-6 md:p-8 shadow-xl border border-violet-200/50 overflow-hidden">
+                        <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-violet-500 via-purple-500 to-pink-500" />
                         <motion.div
                             className="absolute top-4 right-4"
                             animate={{ rotate: 360 }}
                             transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                         >
-                            <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
+                            <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-violet-400" />
                         </motion.div>
 
                         <AnimatePresence mode="wait">
@@ -321,7 +352,7 @@ const UnlockContent = () => {
                                 className="text-center"
                             >
                                 <span className="text-4xl md:text-5xl mb-4 block">{quotes[currentQuote].emoji}</span>
-                                <p className="text-lg md:text-xl text-cute-text font-medium italic leading-relaxed px-2">
+                                <p className="text-lg md:text-xl text-violet-800 font-medium italic leading-relaxed px-2">
                                     "{quotes[currentQuote].text}"
                                 </p>
                             </motion.div>
@@ -333,8 +364,8 @@ const UnlockContent = () => {
                                     key={i}
                                     onClick={() => setCurrentQuote(i)}
                                     className={`h-2 rounded-full transition-all duration-300 ${i === currentQuote
-                                            ? 'bg-gradient-to-r from-pink-500 to-orange-400 w-6'
-                                            : 'bg-pink-200 hover:bg-pink-300 w-2'
+                                            ? 'bg-gradient-to-r from-violet-500 to-purple-500 w-6'
+                                            : 'bg-violet-200 hover:bg-violet-300 w-2'
                                         }`}
                                 />
                             ))}
@@ -342,84 +373,62 @@ const UnlockContent = () => {
                     </div>
                 </motion.div>
 
-                {/* Hero image with Lily */}
+                {/* Animated Bouquet Section */}
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.7 }}
-                    className="mb-8 md:mb-12"
+                    className="mb-12 md:mb-16"
                 >
-                    <motion.div
-                        whileHover={{ scale: 1.01 }}
-                        className="relative group"
-                    >
-                        <div className="absolute inset-0 bg-gradient-to-br from-pink-400 to-orange-400 rounded-3xl blur-xl opacity-30 group-hover:opacity-40 transition-opacity" />
-                        <div className="relative overflow-hidden rounded-3xl shadow-2xl">
-                            <img
-                                src="/feliz/friendship.png"
-                                alt="Amizade verdadeira"
-                                className="w-full h-48 md:h-72 object-cover"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                            <div className="absolute bottom-4 md:bottom-6 left-4 md:left-6 right-4 md:right-6 text-white">
-                                <p className="font-bold text-xl md:text-2xl mb-1">Você Nunca Está Sozinha</p>
-                                <p className="text-sm md:text-base opacity-90">A Lily está sempre com você. E eu também. 💕</p>
-                            </div>
-                        </div>
-                    </motion.div>
+                    <AnimatedBouquet delay={0.9} />
                 </motion.div>
 
                 {/* Lily tribute section */}
                 <div className="mb-8 md:mb-12">
-                    <LilyTribute delay={0.9} />
+                    <LilyTribute delay={1.1} />
                 </div>
 
-                {/* Message cards */}
+                {/* Message cards - amizade focused */}
                 <div className="grid md:grid-cols-2 gap-4 md:gap-6 mb-8 md:mb-12">
                     <MessageCard
-                        title="Do Felipe"
-                        message="Bea, eu tenho muito orgulho de você. De verdade. Ver o quanto você se dedica e se esforça, mesmo quando as coisas são difíceis, me inspira. Você é muito mais forte do que imagina."
-                        icon={Heart}
-                        delay={1.1}
-                        gradient="bg-gradient-to-br from-pink-500 to-rose-600"
+                        title="Você é Incrível"
+                        message="Sua dedicação e esforço são inspiradores. Você dá o seu melhor em tudo o que faz, e isso é admirável. Continue brilhando!"
+                        icon={Crown}
+                        delay={1.3}
+                        gradient="bg-gradient-to-br from-violet-500 to-purple-600"
                     />
                     <MessageCard
                         title="Você é Especial"
-                        message="Não é só o que você faz. É quem você é. Sua gentileza, sua determinação, seu coração enorme. O mundo é melhor porque você existe nele."
-                        icon={Crown}
-                        delay={1.2}
-                        gradient="bg-gradient-to-br from-purple-500 to-indigo-600"
+                        message="Não é só o que você faz. É quem você é. Sua gentileza, sua determinação, seu coração enorme. O mundo é melhor porque você existe."
+                        icon={Star}
+                        delay={1.4}
+                        gradient="bg-gradient-to-br from-purple-500 to-pink-500"
                     />
                     <MessageCard
                         title="Força Interior"
-                        message="Eu sei que às vezes é difícil. Mas olha só o quanto você já superou! Cada obstáculo te fez mais forte. Você é uma guerreira, Bea."
-                        icon={Flame}
-                        delay={1.3}
-                        gradient="bg-gradient-to-br from-orange-400 to-red-500"
+                        message="Mesmo nos dias difíceis, você continua. Isso mostra o quanto você é forte. Cada obstáculo te faz mais resiliente."
+                        icon={Heart}
+                        delay={1.5}
+                        gradient="bg-gradient-to-br from-pink-500 to-rose-500"
                     />
                     <MessageCard
-                        title="Sol da Minha Vida"
-                        message="Não é à toa que te chamam de Sol. Você ilumina tudo ao seu redor. Mesmo nos seus dias mais nublados, você ainda brilha. ☀️"
-                        icon={Sun}
-                        delay={1.4}
-                        gradient="bg-gradient-to-br from-amber-400 to-orange-500"
+                        title="Você Merece"
+                        message="Merece paz, alegria e tudo de bom. Nunca se esqueça de cuidar de você mesma também. Você é prioridade. 💜"
+                        icon={Flower2}
+                        delay={1.6}
+                        gradient="bg-gradient-to-br from-violet-400 to-indigo-500"
                     />
-                </div>
-
-                {/* Affirmations */}
-                <div className="mb-8 md:mb-12">
-                    <Affirmations delay={1.5} />
                 </div>
 
                 {/* Self-care reminders */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 1.7 }}
-                    className="bg-white/70 backdrop-blur-md rounded-3xl p-6 md:p-8 shadow-xl border border-white/50 mb-8 md:mb-12"
+                    transition={{ duration: 0.8, delay: 1.8 }}
+                    className="bg-white/70 backdrop-blur-md rounded-3xl p-6 md:p-8 shadow-xl border border-violet-200/50 mb-8 md:mb-12"
                 >
-                    <h2 className="text-xl md:text-2xl font-bold text-center text-cute-text mb-6">
-                        Lembretinhos de Carinho 💝
+                    <h2 className="text-xl md:text-2xl font-bold text-center text-violet-800 mb-6">
+                        Lembretinhos de Carinho 💜
                     </h2>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
                         {[
@@ -427,67 +436,29 @@ const UnlockContent = () => {
                             { icon: "😴", text: "Descanse" },
                             { icon: "🍎", text: "Alimente-se" },
                             { icon: "🌬️", text: "Respire fundo" },
-                            { icon: "🐕", text: "Faça carinho na Lily" },
+                            { icon: "🐕", text: "Abraça a Lily" },
                             { icon: "🎵", text: "Ouça música" },
-                            { icon: "🌸", text: "Seja gentil consigo" },
-                            { icon: "💆‍♀️", text: "Cuide de você" },
+                            { icon: "🌹", text: "Seja gentil consigo" },
+                            { icon: "💜", text: "Cuide de você" },
                         ].map((item, i) => (
                             <motion.div
                                 key={i}
                                 whileHover={{ scale: 1.08, y: -3 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="flex flex-col items-center p-3 md:p-4 bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl cursor-pointer hover:shadow-lg transition-all border border-pink-100"
+                                className="flex flex-col items-center p-3 md:p-4 bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl cursor-pointer hover:shadow-lg transition-all border border-violet-100"
                             >
                                 <span className="text-2xl md:text-3xl mb-2">{item.icon}</span>
-                                <span className="text-xs md:text-sm text-cute-text font-medium text-center">{item.text}</span>
+                                <span className="text-xs md:text-sm text-violet-700 font-medium text-center">{item.text}</span>
                             </motion.div>
                         ))}
                     </div>
-                </motion.div>
-
-                {/* Gallery */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 1.9 }}
-                    className="grid grid-cols-2 gap-4 mb-8 md:mb-12"
-                >
-                    <motion.div
-                        whileHover={{ scale: 1.03, rotate: -1 }}
-                        className="relative overflow-hidden rounded-2xl shadow-lg"
-                    >
-                        <img
-                            src="/feliz/cozy.png"
-                            alt="Cantinho aconchegante"
-                            className="w-full h-40 md:h-52 object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                        <p className="absolute bottom-2 left-2 text-white text-xs md:text-sm font-medium">
-                            Seu momento de paz 🌙
-                        </p>
-                    </motion.div>
-
-                    <motion.div
-                        whileHover={{ scale: 1.03, rotate: 1 }}
-                        className="relative overflow-hidden rounded-2xl shadow-lg"
-                    >
-                        <img
-                            src="/feliz/sunset.png"
-                            alt="Pôr do sol"
-                            className="w-full h-40 md:h-52 object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                        <p className="absolute bottom-2 left-2 text-white text-xs md:text-sm font-medium">
-                            Amanhã será lindo ☀️
-                        </p>
-                    </motion.div>
                 </motion.div>
 
                 {/* Final message */}
                 <motion.footer
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 1, delay: 2.1 }}
+                    transition={{ duration: 1, delay: 2 }}
                     className="text-center pb-8"
                 >
                     <motion.div
@@ -495,18 +466,15 @@ const UnlockContent = () => {
                         animate={{ scale: [1, 1.1, 1] }}
                         transition={{ duration: 2, repeat: Infinity }}
                     >
-                        <span className="text-5xl">💖</span>
+                        <span className="text-5xl">💜</span>
                     </motion.div>
                     <motion.p
-                        className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-500 to-orange-400 mb-3"
+                        className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-purple-500 to-pink-500 mb-3"
                     >
                         Você é Amada, Bea. Sempre.
                     </motion.p>
-                    <p className="text-cute-text/60 text-sm md:text-base">
-                        Feito com muito amor pelo Felipe ✨
-                    </p>
-                    <p className="text-cute-text/40 text-xs mt-2">
-                        Volte aqui sempre que precisar. Esse cantinho é seu. 💕
+                    <p className="text-violet-500/50 text-xs mt-4">
+                        Volte aqui sempre que precisar. Esse cantinho é seu. 🌻
                     </p>
                 </motion.footer>
             </div>
