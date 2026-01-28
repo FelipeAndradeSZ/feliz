@@ -138,164 +138,205 @@ const LilyTribute = ({ delay }) => (
     </motion.div>
 );
 
-// Buquê animado com emojis - elegante e simples
-const AnimatedBouquet = ({ delay }) => {
+// Animação de Transformação - Pensamentos Negativos viram Positivos
+const ThoughtTransformation = ({ delay }) => {
+    const [phase, setPhase] = useState('negative'); // 'negative' | 'glitch' | 'positive'
     const [isVisible, setIsVisible] = useState(false);
 
+    const negativeThoughts = [
+        "Eu não consigo",
+        "Não sou capaz",
+        "Me odeio",
+        "Sou um fracasso",
+        "Não mereço",
+        "Sou inútil",
+        "Nunca vou conseguir",
+        "Não sou boa o suficiente",
+        "Ninguém me ama",
+        "Sou patética",
+        "Não tenho valor",
+        "Deveria desistir",
+    ];
+
+    const positiveAffirmations = [
+        { text: "Eu sou capaz", emoji: "💪" },
+        { text: "Eu sou forte", emoji: "🌟" },
+        { text: "Eu me amo", emoji: "💜" },
+        { text: "Eu sou incrível", emoji: "✨" },
+        { text: "Eu mereço o melhor", emoji: "👑" },
+        { text: "Eu sou suficiente", emoji: "🦋" },
+    ];
+
     useEffect(() => {
-        const timer = setTimeout(() => setIsVisible(true), delay * 1000);
-        return () => clearTimeout(timer);
+        const timer1 = setTimeout(() => setIsVisible(true), delay * 1000);
+        const timer2 = setTimeout(() => setPhase('glitch'), (delay + 3) * 1000);
+        const timer3 = setTimeout(() => setPhase('positive'), (delay + 4) * 1000);
+
+        return () => {
+            clearTimeout(timer1);
+            clearTimeout(timer2);
+            clearTimeout(timer3);
+        };
     }, [delay]);
 
-    // Configuração das flores - formato de buquê
-    const flowers = [
-        // Camada do topo
-        { emoji: '🌹', x: 0, y: 0, delay: 0.3, size: 48, rotate: 0 },
-        // Segunda camada
-        { emoji: '🌻', x: -40, y: 35, delay: 0.5, size: 44, rotate: -15 },
-        { emoji: '🌻', x: 40, y: 35, delay: 0.6, size: 44, rotate: 15 },
-        // Terceira camada
-        { emoji: '🌹', x: -25, y: 20, delay: 0.8, size: 42, rotate: -10 },
-        { emoji: '🌹', x: 25, y: 20, delay: 0.9, size: 42, rotate: 10 },
-        // Camada lateral
-        { emoji: '🌻', x: -55, y: 60, delay: 1.1, size: 40, rotate: -25 },
-        { emoji: '🌻', x: 55, y: 60, delay: 1.2, size: 40, rotate: 25 },
-        // Rosa central
-        { emoji: '🌹', x: 0, y: 45, delay: 1.4, size: 46, rotate: 0 },
-    ];
-
-    // Folhas decorativas
-    const leaves = [
-        { x: -65, y: 90, rotate: -40, delay: 1.6 },
-        { x: 65, y: 90, rotate: 40, delay: 1.7 },
-        { x: -45, y: 110, rotate: -25, delay: 1.8 },
-        { x: 45, y: 110, rotate: 25, delay: 1.9 },
-    ];
+    if (!isVisible) return null;
 
     return (
-        <div className="relative flex flex-col items-center py-12">
-            {/* Glow de fundo */}
-            <motion.div
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={isVisible ? { opacity: 0.5, scale: 1 } : {}}
-                transition={{ duration: 1.5 }}
-                className="absolute w-72 h-72 bg-gradient-to-br from-violet-300 via-pink-200 to-yellow-200 rounded-full blur-3xl"
-                style={{ top: '10%' }}
-            />
+        <div className="relative flex flex-col items-center py-8 overflow-hidden">
+            {/* Container principal */}
+            <div className="relative w-full max-w-2xl h-64 md:h-80 flex items-center justify-center">
 
-            {/* Container do buquê */}
-            <div className="relative w-72 h-80 md:w-80 md:h-96">
+                {/* FASE 1: Pensamentos Negativos passando rápido */}
+                <AnimatePresence mode="wait">
+                    {phase === 'negative' && (
+                        <motion.div
+                            key="negative"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0, scale: 0.8 }}
+                            className="absolute inset-0 flex items-center justify-center overflow-hidden"
+                        >
+                            {/* Fundo vermelho pulsante */}
+                            <motion.div
+                                className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-red-900/30"
+                                animate={{ opacity: [0.3, 0.6, 0.3] }}
+                                transition={{ duration: 0.5, repeat: Infinity }}
+                            />
 
-                {/* Papel de embrulho / Base do buquê */}
-                <motion.div
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={isVisible ? { scale: 1, opacity: 1 } : {}}
-                    transition={{ duration: 0.8, delay: 2.2, type: "spring" }}
-                    className="absolute bottom-0 left-1/2 -translate-x-1/2"
-                    style={{
-                        width: 0,
-                        height: 0,
-                        borderLeft: '60px solid transparent',
-                        borderRight: '60px solid transparent',
-                        borderTop: '100px solid #8B5CF6',
-                        filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.1))',
-                    }}
-                />
+                            {/* Pensamentos negativos voando */}
+                            {negativeThoughts.map((thought, i) => (
+                                <motion.div
+                                    key={i}
+                                    className="absolute text-red-500/70 font-bold whitespace-nowrap"
+                                    style={{
+                                        fontSize: 14 + Math.random() * 20,
+                                        top: `${10 + (i * 7) % 80}%`,
+                                    }}
+                                    initial={{ x: '100vw', rotate: -5 + Math.random() * 10 }}
+                                    animate={{
+                                        x: '-100vw',
+                                        rotate: -5 + Math.random() * 10,
+                                    }}
+                                    transition={{
+                                        duration: 1.5 + Math.random() * 1,
+                                        delay: i * 0.15,
+                                        repeat: Infinity,
+                                        ease: "linear"
+                                    }}
+                                >
+                                    {thought}
+                                </motion.div>
+                            ))}
 
-                {/* Laço violeta no papel */}
-                <motion.div
-                    initial={{ scale: 0, rotate: -180 }}
-                    animate={isVisible ? { scale: 1, rotate: 0 } : {}}
-                    transition={{ duration: 0.6, delay: 2.4, type: "spring", bounce: 0.5 }}
-                    className="absolute bottom-20 left-1/2 -translate-x-1/2 text-5xl z-10"
-                >
-                    🎀
-                </motion.div>
+                            {/* Texto central piscando */}
+                            <motion.div
+                                className="relative z-10 text-center"
+                                animate={{
+                                    scale: [1, 1.05, 1],
+                                    opacity: [0.7, 1, 0.7]
+                                }}
+                                transition={{ duration: 0.3, repeat: Infinity }}
+                            >
+                                <span className="text-4xl md:text-5xl font-black text-red-500 drop-shadow-lg">
+                                    ❌ PARE ❌
+                                </span>
+                            </motion.div>
+                        </motion.div>
+                    )}
 
-                {/* Folhas verdes */}
-                {leaves.map((leaf, i) => (
-                    <motion.div
-                        key={`leaf-${i}`}
-                        initial={{ scale: 0, opacity: 0, rotate: leaf.rotate - 30 }}
-                        animate={isVisible ? { scale: 1, opacity: 1, rotate: leaf.rotate } : {}}
-                        transition={{ duration: 0.5, delay: leaf.delay, type: "spring" }}
-                        className="absolute text-3xl"
-                        style={{
-                            left: `calc(50% + ${leaf.x}px)`,
-                            top: `calc(30% + ${leaf.y}px)`,
-                            transform: `translate(-50%, -50%) rotate(${leaf.rotate}deg)`,
-                        }}
-                    >
-                        🌿
-                    </motion.div>
-                ))}
+                    {/* FASE 2: Glitch / Transformação */}
+                    {phase === 'glitch' && (
+                        <motion.div
+                            key="glitch"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="absolute inset-0 flex items-center justify-center"
+                        >
+                            <motion.div
+                                className="text-6xl md:text-8xl font-black"
+                                animate={{
+                                    x: [-5, 5, -3, 3, 0],
+                                    y: [-3, 3, -2, 2, 0],
+                                    scale: [1, 1.2, 0.9, 1.1, 1],
+                                    color: ['#EF4444', '#8B5CF6', '#EC4899', '#8B5CF6'],
+                                }}
+                                transition={{
+                                    duration: 1,
+                                    ease: "easeInOut"
+                                }}
+                            >
+                                ✨ TRANSFORMANDO ✨
+                            </motion.div>
+                        </motion.div>
+                    )}
 
-                {/* Flores - aparecem uma a uma */}
-                {flowers.map((flower, i) => (
-                    <motion.div
-                        key={i}
-                        initial={{ scale: 0, opacity: 0, rotate: -180, y: 50 }}
-                        animate={isVisible ? {
-                            scale: 1,
-                            opacity: 1,
-                            rotate: flower.rotate,
-                            y: 0
-                        } : {}}
-                        transition={{
-                            duration: 0.7,
-                            delay: flower.delay,
-                            type: "spring",
-                            bounce: 0.4
-                        }}
-                        className="absolute"
-                        style={{
-                            left: `calc(50% + ${flower.x}px)`,
-                            top: `calc(25% + ${flower.y}px)`,
-                            fontSize: flower.size,
-                            transform: `translate(-50%, -50%)`,
-                            filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.15))',
-                        }}
-                    >
-                        {flower.emoji}
-                    </motion.div>
-                ))}
+                    {/* FASE 3: Afirmações Positivas - lindas e estáveis */}
+                    {phase === 'positive' && (
+                        <motion.div
+                            key="positive"
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
+                            className="relative w-full"
+                        >
+                            {/* Glow de fundo */}
+                            <motion.div
+                                className="absolute inset-0 bg-gradient-to-br from-violet-300/30 via-pink-200/20 to-yellow-200/30 rounded-3xl blur-2xl"
+                                animate={{ scale: [1, 1.05, 1], opacity: [0.5, 0.7, 0.5] }}
+                                transition={{ duration: 3, repeat: Infinity }}
+                            />
 
-                {/* Sparkles ao redor */}
-                {isVisible && [...Array(8)].map((_, i) => (
-                    <motion.div
-                        key={`sparkle-${i}`}
-                        className="absolute pointer-events-none"
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{
-                            opacity: [0, 1, 0],
-                            scale: [0.5, 1.2, 0.5],
-                        }}
-                        transition={{
-                            duration: 1.5,
-                            delay: 2.8 + i * 0.15,
-                            repeat: Infinity,
-                            repeatDelay: 2 + Math.random() * 2,
-                        }}
-                        style={{
-                            left: `${20 + (i % 4) * 20}%`,
-                            top: `${15 + Math.floor(i / 4) * 25}%`,
-                            fontSize: 20 + Math.random() * 10,
-                        }}
-                    >
-                        {['✨', '💜', '⭐', '💫'][i % 4]}
-                    </motion.div>
-                ))}
+                            {/* Grid de afirmações */}
+                            <div className="relative grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 p-4">
+                                {positiveAffirmations.map((affirmation, i) => (
+                                    <motion.div
+                                        key={i}
+                                        initial={{ opacity: 0, y: 30, scale: 0.8 }}
+                                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                                        transition={{
+                                            delay: i * 0.15,
+                                            duration: 0.5,
+                                            type: "spring"
+                                        }}
+                                        whileHover={{ scale: 1.05, y: -5 }}
+                                        className="bg-gradient-to-br from-violet-500 to-purple-600 rounded-2xl p-4 text-center shadow-xl cursor-pointer"
+                                    >
+                                        <motion.span
+                                            className="text-2xl md:text-3xl block mb-2"
+                                            animate={{
+                                                rotate: [0, 10, -10, 0],
+                                                scale: [1, 1.1, 1]
+                                            }}
+                                            transition={{
+                                                duration: 2,
+                                                delay: i * 0.3,
+                                                repeat: Infinity,
+                                                repeatDelay: 3
+                                            }}
+                                        >
+                                            {affirmation.emoji}
+                                        </motion.span>
+                                        <span className="text-white font-bold text-sm md:text-base">
+                                            {affirmation.text}
+                                        </span>
+                                    </motion.div>
+                                ))}
+                            </div>
+
+                            {/* Mensagem final */}
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 1.2 }}
+                                className="text-center mt-4 text-lg md:text-xl font-semibold text-violet-600"
+                            >
+                                Você é tudo isso e muito mais, Bea 💜
+                            </motion.p>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
-
-            {/* Mensagem */}
-            <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 2.8, duration: 0.6 }}
-                className="mt-2 text-center text-violet-600 font-semibold text-xl"
-            >
-                Para você, com carinho 💜
-            </motion.p>
         </div>
     );
 };
@@ -463,14 +504,14 @@ const UnlockContent = () => {
                     </div>
                 </motion.div>
 
-                {/* Animated Bouquet Section */}
+                {/* Thought Transformation Section */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.7 }}
                     className="mb-12 md:mb-16"
                 >
-                    <AnimatedBouquet delay={0.9} />
+                    <ThoughtTransformation delay={0.9} />
                 </motion.div>
 
                 {/* Lily tribute section */}
