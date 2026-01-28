@@ -504,16 +504,6 @@ const UnlockContent = () => {
                     </div>
                 </motion.div>
 
-                {/* Thought Transformation Section */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.7 }}
-                    className="mb-12 md:mb-16"
-                >
-                    <ThoughtTransformation delay={0.9} />
-                </motion.div>
-
                 {/* Lily tribute section */}
                 <div className="mb-8 md:mb-12">
                     <LilyTribute delay={1.1} />
