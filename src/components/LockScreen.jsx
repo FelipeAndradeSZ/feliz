@@ -78,8 +78,8 @@ const LockScreen = ({ currentUser, onUnlock }) => {
                     animate={{ scale: 1, opacity: 1 }}
                     className="bg-white/50 backdrop-blur-sm p-8 rounded-3xl shadow-xl flex flex-col items-center max-w-md w-full"
                 >
-                    <h1 className="text-3xl font-bold text-cute-text mb-2">Dual Unlock</h1>
-                    <p className="text-gray-500 mb-8">Precisamos dos dois juntos! ✨</p>
+                    <h1 className="text-3xl font-bold bg-gradient-to-r from-pink-500 to-orange-400 bg-clip-text text-transparent mb-2">Juntos</h1>
+                    <p className="text-gray-500 mb-8">Precisamos estar conectados 💕</p>
 
                     <div className="flex justify-center items-center gap-8 mb-8">
                         {/* My Indicator */}
@@ -87,7 +87,7 @@ const LockScreen = ({ currentUser, onUnlock }) => {
                             <div className={`p-4 rounded-full transition-all duration-500 ${selfActive ? 'bg-cute-pink shadow-lg scale-110' : 'bg-gray-200'}`}>
                                 <Fingerprint className={`w-12 h-12 ${selfActive ? 'text-white' : 'text-gray-400'}`} />
                             </div>
-                            <span className="text-sm font-medium">{myRole === 'me' ? 'Você' : 'Ela'}</span>
+                            <span className="text-sm font-medium">{myRole === 'me' ? 'Felipe' : 'Bea'}</span>
                         </div>
 
                         <Heart className={`w-8 h-8 ${selfActive && partnerActive ? 'text-cute-red animate-pulse' : 'text-gray-300'}`} fill={selfActive && partnerActive ? "currentColor" : "none"} />
@@ -97,7 +97,7 @@ const LockScreen = ({ currentUser, onUnlock }) => {
                             <div className={`p-4 rounded-full transition-all duration-500 ${partnerActive ? 'bg-cute-pink shadow-lg scale-110' : 'bg-gray-200'}`}>
                                 <Fingerprint className={`w-12 h-12 ${partnerActive ? 'text-white' : 'text-gray-400'}`} />
                             </div>
-                            <span className="text-sm font-medium">{partnerRole === 'me' ? 'Você' : 'Ela'} (Parceiro)</span>
+                            <span className="text-sm font-medium">{partnerRole === 'me' ? 'Felipe' : 'Bea'}</span>
                         </div>
                     </div>
 
@@ -112,7 +112,7 @@ const LockScreen = ({ currentUser, onUnlock }) => {
                     </motion.button>
 
                     <p className="mt-4 text-xs text-gray-400">
-                        {selfActive && partnerActive ? "Desbloqueando..." : "Esperando o outro..."}
+                        {selfActive && partnerActive ? "Conectando... 💖" : partnerActive ? "Segure também!" : "Esperando..."}
                     </p>
 
                 </motion.div>
